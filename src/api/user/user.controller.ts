@@ -3,7 +3,7 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { classToPlain } from 'class-transformer';
-import { ENUMUserGroup } from 'src/share/enum-group/user.enum';
+import { ENUMUserGroup } from 'src/share/enum/user-group.enum';
 import { JwtPayload } from 'src/share/interface/jwt.interface';
 import { CurrentUser, IsPublic } from 'src/auth/decorator';
 import { JwtAuthGuard } from 'src/auth/guard/jwt-auth.guard';
