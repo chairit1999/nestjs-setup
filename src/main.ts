@@ -1,3 +1,4 @@
+import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
@@ -15,7 +16,13 @@ async function bootstrap() {
     credentials: true,
     methods: 'GET,PATCH,POST,DELETE',
   });
-
+  app.useGlobalPipes(
+    new ValidationPipe({
+      disableErrorMessages: configService.get<boolean>('app.isProduction'),
+      transform: true,
+      whitelist: true,
+    }),
+  );
   const port = configService.get('APP_PORT', 3000);
   app.useGlobalFilters(new HttpExceptionFilter());
 
