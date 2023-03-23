@@ -10,7 +10,6 @@ FROM node:14-alpine AS production
 WORKDIR /app
 COPY package.json ./
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/.env ./.env
 COPY --from=builder /app/accesstoken.pub ./accesstoken.pub
 COPY --from=builder /app/accesstoken.private ./accesstoken.private
 COPY --from=builder /app/ormconfig.js ./ormconfig.js
