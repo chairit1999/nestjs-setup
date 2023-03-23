@@ -20,10 +20,27 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
+        env:
+        - name: DB_HOST
+          value: "postgres-service"
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_PASSWORD
+          value: "postgres"
+        - name: DB_DATABASE
+          value: "database" 
+        - name: DB_USERNAME
+          value: "postgres"
+        - name: DB_SYNCHRONIZE
+          value: "false"
+        - name: DB_LOGGING
+          value: "false"
       initContainers:
       - name: check-db-ready
         image: busybox:1.28
         command: ['sh', '-c', "until nslookup postgres-service.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for myservice; sleep 2; done"]
+       
+        
   
 --- 
 apiVersion: v1
