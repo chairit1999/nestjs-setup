@@ -12,4 +12,4 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file deployment/Dockerfile --tag setup:$(date +%s)
     - name: test env
-      run: echo "${{ secret.HOST }}"
+      run: echo "${{ secrets.HOST }}"
