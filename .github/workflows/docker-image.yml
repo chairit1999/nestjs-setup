@@ -10,3 +10,5 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker build . --file deployment/Dockerfile --tag setup:$(date +%s)
+    - name: test env
+      run: echo "${{ ssh.HOST }}"
