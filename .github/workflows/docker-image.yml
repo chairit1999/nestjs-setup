@@ -9,4 +9,5 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build /deployment/ --file Dockerfile --tag my-image-name:$(date +%s)
+    - run: ls
+    - run: docker build /deployment/ --file Dockerfile --tag my-image-name:$(date +%s)
