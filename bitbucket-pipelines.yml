@@ -14,6 +14,11 @@ definitions:
         size: 2x
         deployment: test
         script:
+          - eval "$(ssh-agent -s)"
+          - echo "$SSH_KEY" | tr -d '\r' | ssh-add - > /dev/null
+          - mkdir -p ~/.ssh
+          - chmod 700 ~/.ssh
+          - ssh-keyscan -H $DEPLOY_SERVER >> ~/.ssh/known_hosts
           - docker build -t nest-setup-api:$BITBUCKET_BUILD_NUMBER -f ./deployment/Dockerfile . --no-cache
           - docker save -o nest-setup-api.tar nest-setup-api:$BITBUCKET_BUILD_NUMBER
 clone:
