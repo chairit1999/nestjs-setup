@@ -1,0 +1,26 @@
+options:
+  docker: true
+definitions:
+  services:
+    docker:
+      memory: 3072
+    docker-large:
+      memory: 6144
+      type: docker
+  steps:
+    - step:  &build-image
+        image: node:16
+        name: Build Application
+        size: 2x
+        deployment: test
+        script:
+          - docker login cliniterdental.azurecr.io -u $USERNAME -p $PASSWORD
+          # - npm run build
+          - docker build -t nest-setup-api:$BITBUCKET_BUILD_NUMBER -f /deployment/Dockerfile . --no-cache
+          - docker save -o nest-setup-api.tar nest-setup-api:BITBUCKET_BUILD_NUMBER    
+clone:
+  depth: full
+pipelines:
+  branches:
+    master:
+      - step: *build-image
