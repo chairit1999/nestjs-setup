@@ -29,8 +29,6 @@ export class UserController {
   @UseGuards(JwtAuthGuard)
   @Get()
   async findAll(@CurrentUser() user: JwtPayload) {
-    console.log(user);
-
     return await this.userService.findAll();
   }
 }

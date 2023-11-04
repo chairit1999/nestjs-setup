@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { Connection, DeepPartial, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { CrudService } from 'src/base/crud.service';
 import { UserEntity } from 'src/database/entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';

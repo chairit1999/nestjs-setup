@@ -1,0 +1,31 @@
+services:
+  api:
+    container_name: nest-setup-api
+    image: nest-setup-api:0.0.1
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - ../.env
+    depends_on:
+      - db
+    networks:
+      - database
+  db:
+    container_name: postgres
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: postgres
+      POSTGRES_DB: abc
+    networks:
+      - database
+
+
+networks:
+  database:
+    external: true
+
+
+
+   

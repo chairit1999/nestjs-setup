@@ -6,7 +6,6 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './guard/jwt-auth.guard';
 import { JwtStrategy } from './guard/jwt.strategy';
-import { LocalAuthGuard } from './guard/local-auth.guard';
 import { LocalStrategy } from './guard/local.strategy';
 @Module({
   imports: [
