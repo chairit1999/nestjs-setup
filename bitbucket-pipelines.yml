@@ -14,7 +14,7 @@ definitions:
         size: 2x
         deployment: test
         script:
-          - echo $SSH_USER
+          - ssh $SSH_USER@$SSH_SERVER
 
 clone:
   depth: full
