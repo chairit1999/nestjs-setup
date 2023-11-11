@@ -15,9 +15,9 @@ definitions:
         deployment: test
         script:
           - ssh-keyscan -H $SSH_SERVER >> ~/.ssh/known_hosts
-          - ssh -tt $SSH_USER@$SSH_SERVER
-          - exit          
-
+          - docker build -t nest-setup-api:$BITBUCKET_BUILD_NUMBER -f ./deployment/Dockerfile .
+          - docker save -o nest-setup-api.tar nest-setup-api:BITBUCKET_BUILD_NUMBER
+          - rsync -avz --progress nest-setup-api.tar -e $SSH_USER@$SSH_SERVER:~
 clone:
   depth: full
 pipelines:
