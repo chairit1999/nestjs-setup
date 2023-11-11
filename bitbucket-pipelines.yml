@@ -16,6 +16,7 @@ definitions:
         script:
           - ssh-keyscan -H $SSH_SERVER >> ~/.ssh/known_hosts
           - ssh -tt $SSH_USER@$SSH_SERVER
+          - exit          
 
 clone:
   depth: full
